@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz App</title>
+    <link rel="stylesheet" href="/landing-page.css">
+</head>
+<body>
+    <div class="timer">
+        <div id="time" class="timebox">
+                30
+        </div>
+    </div>
+    <div class="main-section">
+        <div class="question-display">
+            <p id="question" class="question">What is the capital of France?</p>
+            <div id="answers" class="answers">
+                <button class="answer">Berlin</button>
+                <button class="answer">Madrid</button>
+                <button class="answer">Paris</button>
+                <button class="answer">Rome</button>
+            </div>
+            <div class="btns">
+                
+                <div class="question-nav">
+                    <button id="previous" class="nav-button">Previous</button>
+                    <p class="question-number">1</p>
+                    <button id="next" class="nav-button">Next</button>
+                </div>
+                <button id="mark" class="mark-button">Mark</button>
+            </div>
+        </div>
+        <div class="mark-list">
+            <ul id="marked-questions">
+
+                <li class="marked-question">
+                    question 1
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="submit-section">
+        <button id="submit" class="submit-button">Submit</button>
+    </div>
+    <div class="display-message hidden" id="message-box">
+        <div class="message-card lose-card" >
+            <h2 id="status">You Lost!</h2>
+            <p id="message">Better luck next time.</p>
+            <button id="play-again" class="play-again-btn">Play Again</button>
+        </div>
+    </div>
+</body>
+</html>
