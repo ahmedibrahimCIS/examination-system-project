@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registration</title>
+    <link rel="stylesheet" href="../CSS/reg.css">
 </head>
 <body>
+
+    <h1>Registration</h1>
+    <div class="regForm"> 
+        <form id="regForm" method="GET" action="../HTML/sign-in.html" onsubmit="return validateForm(event)" >
+
+        <label>First name <input type="text" id="fname" name="firstname" placeholder="Enter your firstname"></label>
+        <label>Last name <input type="text" id="lname" name="lastname" placeholder="Enter your  lastname"> </label>
+        <label>email <input type="email" id="email" name="email" placeholder="Enter your email" ></label>
+        <label>Password <input type="password" id="password" name="password" placeholder="Enter your password"></label>
+        <label>Re-enter password <input type="password" id="confirm" name="password" placeholder="Confirm your password"></label>
+
+        <button type="submit">Register</button>
+
+
+    </form>
+    </div>
+   
     
+    <script src="../JS/valForms.js"></script>
 </body>
 </html>
