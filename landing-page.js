@@ -4,10 +4,94 @@ var messageCard = document.getElementById("message-card");
 var status = document.getElementById("status");
 var message = document.getElementById("message");
 var playAgainBtn = document.getElementById("play-again");
+var questionText = document.getElementById("question");
+var answers = document.querySelectorAll(".answer");
+
+
+var questions = [
+  {
+    question: "What is the capital of France?",
+    options: ["Berlin", "Madrid", "Paris", "Rome"],
+    answer: "Paris",
+    isCorrect: false,
+    isAnswered: false,
+  },
+  {
+    question: "Which planet is known as the Red Planet?",
+    options: ["Earth", "Mars", "Jupiter", "Venus"],
+    answer: "Mars",
+    isCorrect: false,
+    isAnswered: false,
+  },
+  {
+    question: "Who wrote the play 'Hamlet'?",
+    options: ["Mark Twain", "William Shakespeare", "Charles Dickens", "Leo Tolstoy"],
+    answer: "William Shakespeare",
+    isCorrect: false,
+    isAnswered: false,
+  },
+  {
+    question: "What is the largest ocean on Earth?",
+    options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+    answer: "Pacific Ocean",
+    isCorrect: false,
+    isAnswered: false,
+  },
+  {
+    question: "What is the boiling point of water at sea level?",
+    options: ["50°C", "100°C", "150°C", "200°C"],
+    answer: "100°C",
+    isCorrect: false,
+    isAnswered: false,
+  },
+  {
+    question: "Which gas do plants absorb from the atmosphere?",
+    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+    answer: "Carbon Dioxide",
+    isCorrect: false,
+    isAnswered: false,
+  },
+  {
+    question: "In which continent is Egypt located?",
+    options: ["Asia", "Europe", "Africa", "South America"],
+    answer: "Africa",
+    isCorrect: false,
+    isAnswered: false,
+  },
+  {
+    question: "What is the chemical symbol for Gold?",
+    options: ["Au", "Ag", "Fe", "Go"],
+    answer: "Au",
+    isCorrect: false,
+    isAnswered: false,
+  },
+  {
+    question: "Which animal is known as the King of the Jungle?",
+    options: ["Tiger", "Elephant", "Lion", "Bear"],
+    answer: "Lion",
+    isCorrect: false,
+    isAnswered: false,
+  },
+  {
+    question: "Which instrument measures temperature?",
+    options: ["Barometer", "Thermometer", "Hygrometer", "Speedometer"],
+    answer: "Thermometer",
+    isCorrect: false,
+    isAnswered: false,
+  },
+];
+
 
 initLandingPage();
 
 function initLandingPage() {
+    var shuffledQuestions = shuffleArray(questions);
+    console.log(shuffledQuestions);
+    console.log(shuffledQuestions[0]);
+    console.log(answers);
+    
+    
+    displayCurrentQuestion(shuffledQuestions[0]);
   startTimer();
   messageBox.classList.add("hidden");
 }
@@ -29,3 +113,17 @@ function startTimer() {
 }
 
 playAgainBtn.addEventListener("click", initLandingPage);
+
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function displayCurrentQuestion(question) {
+
+questionText.textContent = question.question;
+answers.forEach((button, index) => {
+  button.textContent = question.options[index];  
+}
+);
+}
+
