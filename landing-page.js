@@ -3,15 +3,17 @@ var messageBox = document.getElementById("message-box");
 var messageCard = document.getElementById("message-card");
 var status = document.getElementById("status");
 var message = document.getElementById("message");
+var playAgainBtn = document.getElementById("play-again");
 
 initLandingPage();
 
 function initLandingPage() {
   startTimer();
+  messageBox.classList.add("hidden");
 }
 
 function startTimer() {
-  var timeLeft = 30;
+  var timeLeft = 15;
   var timerInterval = setInterval(function () {
     if (timeLeft <= 0) {
       messageBox.classList.remove("hidden");
@@ -25,3 +27,5 @@ function startTimer() {
     timeLeft -= 1;
   }, 1000);
 }
+
+playAgainBtn.addEventListener("click", initLandingPage);
