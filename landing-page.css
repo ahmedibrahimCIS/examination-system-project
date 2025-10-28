@@ -139,6 +139,7 @@ padding: 5px;
   text-align: center;
   transform: all 0.3s ease-in-out;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 .marked-question:hover {
   background-color: #e6b15c;

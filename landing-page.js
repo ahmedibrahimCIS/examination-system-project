@@ -7,6 +7,21 @@ var playAgainBtn = document.getElementById("play-again");
 var questionText = document.getElementById("question");
 var answers = document.getElementById("answers");
 var questionNav = document.getElementById("question-nav");
+var markBtn = document.getElementById("mark-btn");
+var markedQuestions = document.getElementById("marked-questions");
+var markedQuestionsSet = new Set();
+
+// set =new Set();
+// set.add(4);
+// console.log(set);
+// set.add(1);
+// console.log(set);
+// set.forEach((item)=>{
+//   console.log(item);
+// });
+// console.log(set.has(4));
+// set.delete(4)
+// console.log(set.has(4));
 
 var questions = [
   {
@@ -123,7 +138,7 @@ function startTimer() {
       messageBox.classList.remove("hidden");
       messageCard.classList.remove("win-card");
       messageCard.classList.add("lose-card");
-      status.textContent = "You Lost!";
+      status.textContent = "You Faild!";
       message.textContent = "You`r out of time better luck next time.";
       clearInterval(timerInterval);
     }
@@ -142,14 +157,32 @@ function displayCurrentQuestion(question, qIndex) {
   questionText.textContent = question.question;
   var tempQuistions = "";
   question.options.forEach((option, index) => {
-    tempQuistions += `<button class="answer ${index==question.selectedOption?"selected":""}" onclick="handleAnswerSelection(this,${index},${qIndex})">${option}</button>`;
+    tempQuistions += `<button class="answer ${
+      index == question.selectedOption ? "selected" : ""
+    }" onclick="handleAnswerSelection(this,${index},${qIndex})">${option}</button>`;
   });
   answers.innerHTML = tempQuistions;
   questionNav.innerHTML = `
-  ${qIndex!=0?`<button onclick="toggleQuestion(${qIndex - 1})" id="previous" class="nav-button">Previous</button>`:''}
+  ${
+    qIndex != 0
+      ? `<button onclick="toggleQuestion(${
+          qIndex - 1
+        })" id="previous" class="nav-button">Previous</button>`
+      : ""
+  }
   <p id="question-number" class="question-number">${qIndex + 1}</p>
-  ${qIndex!=9?`<button onclick="toggleQuestion(${qIndex + 1})" id="next" class="nav-button">Next</button>`:''}
+  ${
+    qIndex != 9
+      ? `<button onclick="toggleQuestion(${
+          qIndex + 1
+        })" id="next" class="nav-button">Next</button>`
+      : ""
+  }
 `;
+
+  markBtn.innerHTML = `<button id="mark" class="mark-button" onclick="toggelMarkQuestion(${qIndex})" >${
+    markedQuestionsSet.has(qIndex) ? `Un Mark` : `Mark`
+  }</button>`;
 }
 
 function handleAnswerSelection(el, selectedIndex, qIndex) {
@@ -171,6 +204,32 @@ function handleAnswerSelection(el, selectedIndex, qIndex) {
 
   console.log(shuffledQuestions);
 }
-function toggleQuestion(newIndex){
+function toggleQuestion(newIndex) {
   displayCurrentQuestion(shuffledQuestions[newIndex], newIndex);
-} 
+}
+
+function toggelMarkQuestion(qIndex) {
+  var markedQuestionslistItems = "";
+  if (markedQuestionsSet.has(qIndex)) {
+    markedQuestionsSet.delete(qIndex);
+    markedQuestionsSet.forEach((item) => {
+      // console.log(item);
+      markedQuestionslistItems += `<li class="marked-question" onclick="toggleQuestion(${item})" >question ${
+        item + 1
+      }</li>`;
+    });
+  } else {
+    markedQuestionsSet.add(qIndex);
+    markedQuestionsSet.forEach((item) => {
+      // console.log(item);
+
+      markedQuestionslistItems += `<li class="marked-question" onclick="toggleQuestion(${item})" >question ${
+        item + 1
+      }</li>`;
+    });
+  }
+  markedQuestions.innerHTML = markedQuestionslistItems;
+  markBtn.innerHTML = `<button id="mark" class="mark-button" onclick="toggelMarkQuestion(${qIndex})" >${
+    markedQuestionsSet.has(qIndex) ? `Un Mark` : `Mark`
+  }</button>`;
+}
