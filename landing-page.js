@@ -5,7 +5,7 @@ var status = document.getElementById("status");
 var message = document.getElementById("message");
 var playAgainBtn = document.getElementById("play-again");
 var questionText = document.getElementById("question");
-var answers = document.querySelectorAll(".answer");
+var answers = document.getElementById('answers');
 
 
 var questions = [
@@ -121,9 +121,11 @@ function shuffleArray(array) {
 function displayCurrentQuestion(question) {
 
 questionText.textContent = question.question;
-answers.forEach((button, index) => {
-  button.textContent = question.options[index];  
+var tempQuistions =''
+question.options.forEach((q, index) => {
+  tempQuistions += `<button class="answer">${q}</button>`;
 }
 );
+answers.innerHTML = tempQuistions
 }
 
