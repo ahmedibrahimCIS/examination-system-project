@@ -5,8 +5,8 @@ var status = document.getElementById("status");
 var message = document.getElementById("message");
 var playAgainBtn = document.getElementById("play-again");
 var questionText = document.getElementById("question");
-var answers = document.getElementById('answers');
-
+var answers = document.getElementById("answers");
+var questionNav = document.getElementById("question-nav");
 
 var questions = [
   {
@@ -27,7 +27,12 @@ var questions = [
   },
   {
     question: "Who wrote the play 'Hamlet'?",
-    options: ["Mark Twain", "William Shakespeare", "Charles Dickens", "Leo Tolstoy"],
+    options: [
+      "Mark Twain",
+      "William Shakespeare",
+      "Charles Dickens",
+      "Leo Tolstoy",
+    ],
     answer: 1,
     isCorrect: false,
     isAnswered: false,
@@ -35,7 +40,12 @@ var questions = [
   },
   {
     question: "What is the largest ocean on Earth?",
-    options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+    options: [
+      "Atlantic Ocean",
+      "Indian Ocean",
+      "Arctic Ocean",
+      "Pacific Ocean",
+    ],
     answer: 3,
     isCorrect: false,
     isAnswered: false,
@@ -93,17 +103,15 @@ var questions = [
 
 var shuffledQuestions = [];
 
-
 initLandingPage();
 
 function initLandingPage() {
-    shuffledQuestions = shuffleArray(questions);
-    // console.log(shuffledQuestions);
-    // console.log(shuffledQuestions[0]);
-    // console.log(answers);
-    
-    
-    displayCurrentQuestion(shuffledQuestions[0],0);
+  shuffledQuestions = shuffleArray(questions);
+  // console.log(shuffledQuestions);
+  // console.log(shuffledQuestions[0]);
+  // console.log(answers);
+
+  displayCurrentQuestion(shuffledQuestions[0], 0);
   startTimer();
   messageBox.classList.add("hidden");
 }
@@ -130,23 +138,25 @@ function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-function displayCurrentQuestion(question,qIndex) {
-
-questionText.textContent = question.question;
-var tempQuistions =''
-question.options.forEach((q, index) => {
-  tempQuistions += `<button class="answer" onclick="handleAnswerSelection(this,${index},${qIndex})">${q}</button>`;
+function displayCurrentQuestion(question, qIndex) {
+  questionText.textContent = question.question;
+  var tempQuistions = "";
+  question.options.forEach((option, index) => {
+    tempQuistions += `<button class="answer ${index==question.selectedOption?"selected":""}" onclick="handleAnswerSelection(this,${index},${qIndex})">${option}</button>`;
+  });
+  answers.innerHTML = tempQuistions;
+  questionNav.innerHTML = `
+  ${qIndex!=0?`<button onclick="toggleQuestion(${qIndex - 1})" id="previous" class="nav-button">Previous</button>`:''}
+  <p id="question-number" class="question-number">${qIndex + 1}</p>
+  ${qIndex!=9?`<button onclick="toggleQuestion(${qIndex + 1})" id="next" class="nav-button">Next</button>`:''}
+`;
 }
-);
-answers.innerHTML = tempQuistions
-}
 
+function handleAnswerSelection(el, selectedIndex, qIndex) {
+  console.log(el, selectedIndex);
 
-function handleAnswerSelection(el,selectedIndex,qIndex) {
-  console.log(el,selectedIndex);
-  
-  document.querySelectorAll('.answer').forEach(btn => {
-    btn.classList.remove("selected") 
+  document.querySelectorAll(".answer").forEach((btn) => {
+    btn.classList.remove("selected");
   });
   el.classList.add("selected");
   shuffledQuestions[qIndex].isAnswered = true;
@@ -154,13 +164,13 @@ function handleAnswerSelection(el,selectedIndex,qIndex) {
   shuffledQuestions[qIndex].selectedOption = selectedIndex;
   if (selectedIndex === shuffledQuestions[qIndex].answer) {
     shuffledQuestions[qIndex].isCorrect = true;
-  }else{
+  } else {
     shuffledQuestions[qIndex].isCorrect = false;
   }
   console.log(selectedIndex);
-  
 
   console.log(shuffledQuestions);
-  
-
 }
+function toggleQuestion(newIndex){
+  displayCurrentQuestion(shuffledQuestions[newIndex], newIndex);
+} 
