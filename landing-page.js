@@ -12,72 +12,82 @@ var questions = [
   {
     question: "What is the capital of France?",
     options: ["Berlin", "Madrid", "Paris", "Rome"],
-    answer: "Paris",
+    answer: 2,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
   {
     question: "Which planet is known as the Red Planet?",
     options: ["Earth", "Mars", "Jupiter", "Venus"],
-    answer: "Mars",
+    answer: 1,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
   {
     question: "Who wrote the play 'Hamlet'?",
     options: ["Mark Twain", "William Shakespeare", "Charles Dickens", "Leo Tolstoy"],
-    answer: "William Shakespeare",
+    answer: 1,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
   {
     question: "What is the largest ocean on Earth?",
     options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
-    answer: "Pacific Ocean",
+    answer: 3,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
   {
     question: "What is the boiling point of water at sea level?",
     options: ["50°C", "100°C", "150°C", "200°C"],
-    answer: "100°C",
+    answer: 1,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
   {
     question: "Which gas do plants absorb from the atmosphere?",
     options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
-    answer: "Carbon Dioxide",
+    answer: 1,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
   {
     question: "In which continent is Egypt located?",
     options: ["Asia", "Europe", "Africa", "South America"],
-    answer: "Africa",
+    answer: 2,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
   {
     question: "What is the chemical symbol for Gold?",
     options: ["Au", "Ag", "Fe", "Go"],
-    answer: "Au",
+    answer: 0,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
   {
     question: "Which animal is known as the King of the Jungle?",
     options: ["Tiger", "Elephant", "Lion", "Bear"],
-    answer: "Lion",
+    answer: 2,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
   {
     question: "Which instrument measures temperature?",
     options: ["Barometer", "Thermometer", "Hygrometer", "Speedometer"],
-    answer: "Thermometer",
+    answer: 1,
     isCorrect: false,
     isAnswered: false,
+    selectedOption: null,
   },
 ];
 
@@ -128,4 +138,6 @@ question.options.forEach((q, index) => {
 );
 answers.innerHTML = tempQuistions
 }
+
+
 
