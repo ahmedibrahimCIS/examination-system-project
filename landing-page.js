@@ -91,23 +91,25 @@ var questions = [
   },
 ];
 
+var shuffledQuestions = [];
+
 
 initLandingPage();
 
 function initLandingPage() {
-    var shuffledQuestions = shuffleArray(questions);
-    console.log(shuffledQuestions);
-    console.log(shuffledQuestions[0]);
-    console.log(answers);
+    shuffledQuestions = shuffleArray(questions);
+    // console.log(shuffledQuestions);
+    // console.log(shuffledQuestions[0]);
+    // console.log(answers);
     
     
-    displayCurrentQuestion(shuffledQuestions[0]);
+    displayCurrentQuestion(shuffledQuestions[0],0);
   startTimer();
   messageBox.classList.add("hidden");
 }
 
 function startTimer() {
-  var timeLeft = 15;
+  var timeLeft = 240;
   var timerInterval = setInterval(function () {
     if (timeLeft <= 0) {
       messageBox.classList.remove("hidden");
@@ -128,16 +130,37 @@ function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-function displayCurrentQuestion(question) {
+function displayCurrentQuestion(question,qIndex) {
 
 questionText.textContent = question.question;
 var tempQuistions =''
 question.options.forEach((q, index) => {
-  tempQuistions += `<button class="answer">${q}</button>`;
+  tempQuistions += `<button class="answer" onclick="handleAnswerSelection(this,${index},${qIndex})">${q}</button>`;
 }
 );
 answers.innerHTML = tempQuistions
 }
 
 
+function handleAnswerSelection(el,selectedIndex,qIndex) {
+  console.log(el,selectedIndex);
+  
+  document.querySelectorAll('.answer').forEach(btn => {
+    btn.classList.remove("selected") 
+  });
+  el.classList.add("selected");
+  shuffledQuestions[qIndex].isAnswered = true;
 
+  shuffledQuestions[qIndex].selectedOption = selectedIndex;
+  if (selectedIndex === shuffledQuestions[qIndex].answer) {
+    shuffledQuestions[qIndex].isCorrect = true;
+  }else{
+    shuffledQuestions[qIndex].isCorrect = false;
+  }
+  console.log(selectedIndex);
+  
+
+  console.log(shuffledQuestions);
+  
+
+}
