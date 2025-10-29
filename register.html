@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="reg.css">
+</head>
+<body>
+ <div class="container">
+        <h1>SIGNUP ✨</h1>
+   
+    <div class="regForm"> 
+        <form id="regForm" method="GET" onsubmit="return validateForm(event)" >
+
+        <label>First name <input type="text" id="fname" name="firstname" placeholder="Enter your firstname"></label>
+        <label>Last name <input type="text" id="lname" name="lastname" placeholder="Enter your  lastname"> </label>
+        <label>email <input type="email" id="email" name="email" placeholder="Enter your email" ></label>
+        <label>Password <input type="password" id="password" name="password" placeholder="Enter your password"></label>
+        <label>Re-enter password <input type="password" id="confirm" name="password" placeholder="Confirm your password"></label>
+
+        <a href="index.html"> Already have an account?</a>
+
+        <button type="submit" onclick="window.location.href='index.html'">Register</button>
+
+
+    </form>
+    </div>
+ </div>
+
+    
+    <script src="valForm.js"></script>
+</body>
+</html>

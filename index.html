@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-    <link rel="stylesheet" href="reg.css">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="sign-in.css">
 </head>
 <body>
-    <div class="header">
-        <h1>SIGNUP</h1>
-    </div>
-   
-    <div class="regForm"> 
-        <form id="regForm" method="GET" action="sign-in.html" onsubmit="return validateForm(event)" >
 
-        <label>First name <input type="text" id="fname" name="firstname" placeholder="Enter your firstname"></label>
-        <label>Last name <input type="text" id="lname" name="lastname" placeholder="Enter your  lastname"> </label>
+    <!-- added div  -->
+<div class="container">
+    <div class="signin-Form">
+         <h1>Welcome Back 👋</h1>
+        <form method="GET" onsubmit="return validateLogin(event)">
+       
         <label>email <input type="email" id="email" name="email" placeholder="Enter your email" ></label>
         <label>Password <input type="password" id="password" name="password" placeholder="Enter your password"></label>
-        <label>Re-enter password <input type="password" id="confirm" name="password" placeholder="Confirm your password"></label>
+        
+        <!-- Feat/added link to signup page -->
+        <a href="register.html">Don't hava an account?</a>  
 
-        <button type="submit">Register</button>
+        <button type="submit" onclick="window.location.href='home-page.html'">Sign In</button>
 
 
     </form>
     </div>
-   
-    
-    <script src="valForm.js"></script>
+</div>
+
+    <script src="valSignin.js"></script>
 </body>
 </html>

@@ -10,13 +10,7 @@ body {
 }
 
 .container {
-  background-color: #ffffff;
-  width: 420px;
-  padding: 40px 30px;
   text-align: center;
-  border-radius: 20px;
-  box-shadow: 6px 10px  rgb(26, 26, 26);
-  border-top: 6px solid #bda069;
 }
 
 .container h1 {
