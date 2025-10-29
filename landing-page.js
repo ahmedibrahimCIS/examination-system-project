@@ -1,7 +1,7 @@
 var timer = document.getElementById("time");
 var messageBox = document.getElementById("message-box");
 var messageCard = document.getElementById("message-card");
-var status = document.getElementById("status");
+var cardTitle = document.getElementById("status");
 var message = document.getElementById("message");
 var playAgainBtn = document.getElementById("play-again");
 var questionText = document.getElementById("question");
@@ -9,7 +9,9 @@ var answers = document.getElementById("answers");
 var questionNav = document.getElementById("question-nav");
 var markBtn = document.getElementById("mark-btn");
 var markedQuestions = document.getElementById("marked-questions");
+var submitBtn = document.getElementById("submit");
 var markedQuestionsSet = new Set();
+var timerInterval;
 
 // set =new Set();
 // set.add(4);
@@ -133,12 +135,12 @@ function initLandingPage() {
 
 function startTimer() {
   var timeLeft = 240;
-  var timerInterval = setInterval(function () {
+   timerInterval = setInterval(function () {
     if (timeLeft <= 0) {
       messageBox.classList.remove("hidden");
       messageCard.classList.remove("win-card");
       messageCard.classList.add("lose-card");
-      status.textContent = "You Faild!";
+      cardTitle.textContent = "You Faild!";
       message.textContent = "You`r out of time better luck next time.";
       clearInterval(timerInterval);
     }
@@ -147,7 +149,12 @@ function startTimer() {
   }, 1000);
 }
 
-playAgainBtn.addEventListener("click", initLandingPage);
+playAgainBtn.addEventListener("click", resetgame);
+
+function resetgame() {
+  markedQuestionsSet.clear();
+  initLandingPage();
+}
 
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
@@ -233,3 +240,32 @@ function toggelMarkQuestion(qIndex) {
     markedQuestionsSet.has(qIndex) ? `Un Mark` : `Mark`
   }</button>`;
 }
+
+submitBtn.addEventListener("click", function(){
+  clearInterval(timerInterval);
+  var correctAnswersCount = 0;
+  shuffledQuestions.forEach((question) => {
+    if (question.isCorrect) {
+      correctAnswersCount++;
+    }
+    question.isCorrect= false;
+    question.isAnswered= false;
+    question.selectedOption= null;
+
+  });
+  if(correctAnswersCount < 5){
+    messageBox.classList.remove("hidden");
+    messageCard.classList.remove("win-card");
+    messageCard.classList.add("lose-card");
+    cardTitle.textContent = "You Faild!";
+    message.textContent = `You answered ${correctAnswersCount} only out of ${shuffledQuestions.length} questions correctly.`;
+  }else{
+
+  messageBox.classList.remove("hidden");
+    messageCard.classList.remove("lose-card");
+
+  messageCard.classList.add("win-card");
+  cardTitle.textContent = "You Finished!";
+  message.textContent = `You answered ${correctAnswersCount} out of ${shuffledQuestions.length} questions correctly.`;
+  }
+});
