@@ -221,3 +221,15 @@ body {
   background-color: #f3f3f3;
   transform: translateY(-2px);
 }
+
+.question-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+ul{
+  list-style: none;
+}

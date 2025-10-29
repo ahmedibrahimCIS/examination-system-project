@@ -152,6 +152,7 @@ function startTimer() {
 playAgainBtn.addEventListener("click", resetgame);
 
 function resetgame() {
+  markedQuestions.innerHTML = "";
   markedQuestionsSet.clear();
   initLandingPage();
 }
