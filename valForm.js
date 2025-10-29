@@ -9,6 +9,11 @@ function validateForm(event) {
       var password = document.getElementById("password").value;
       var confirm = document.getElementById("confirm").value;
 
+      if (localStorage.getItem("isRegistered") === "true" && localStorage.getItem("email") === email) {
+          alert("You are already registered.");
+          window.location.href = "sign-in.html";
+     }
+
 
       if (!nameRegex.test(fname) || !nameRegex.test(lname)) {
         event.preventDefault(); 
@@ -38,6 +43,8 @@ function validateForm(event) {
       localStorage.setItem('lastname' ,lname)
       localStorage.setItem('email' ,email)
       localStorage.setItem('password' ,password)
+
+      localStorage.setItem("isRegistered", "true");
 
       return true;
 
