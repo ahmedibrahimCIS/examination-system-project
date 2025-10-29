@@ -9,15 +9,12 @@ var pass = localStorage.getItem('password')
 
     
 if (inputEmail == email && inputPassword == pass) {
-    alert('Logged In successfully')
-    console.log('Logged In successfully');
-    
+    window.location.href = 'home-page.html';    
     return true;
 
 }else{
     event.preventDefault();
     console.log('wrong pass');
-    
     alert('Wrong email or password');
     return false;
 

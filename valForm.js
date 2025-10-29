@@ -3,6 +3,8 @@ var emailRegex = new RegExp('[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+');
 
 function validateForm(event) {
 
+      event.preventDefault();
+
       var fname = document.getElementById("fname").value;
       var lname = document.getElementById("lname").value;
       var email = document.getElementById("email").value;
@@ -14,27 +16,26 @@ function validateForm(event) {
           window.location.href = "sign-in.html";
      }
 
-
+      if(fname == "" || lname == "" || email =="" || password == "" || confirm ==""){
+        alert("fill in all fields");
+        return false;
+      }
       if (!nameRegex.test(fname) || !nameRegex.test(lname)) {
-        event.preventDefault(); 
         alert("Names must contain only letters");
         return false;
       }
 
       if (!emailRegex.test(email)) {
-        event.preventDefault();
         alert("Please enter a valid email");
         return false;
       }
 
       if (password.length < 6) {
-        event.preventDefault();
         alert("Password must be at least 6 characters");
         return false;
       }
 
       if (password !== confirm) {
-        event.preventDefault();
         alert("Passwords don't match");
         return false;
       }
