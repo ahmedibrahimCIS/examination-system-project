@@ -13,13 +13,14 @@ function validateForm(event) {
 
       if (localStorage.getItem("isRegistered") === "true" && localStorage.getItem("email") === email) {
           alert("You are already registered.");
-          window.location.href = "sign-in.html";
+          window.location.href = "index.html";
      }
 
       if(fname == "" || lname == "" || email =="" || password == "" || confirm ==""){
         alert("fill in all fields");
         return false;
       }
+
       if (!nameRegex.test(fname) || !nameRegex.test(lname)) {
         alert("Names must contain only letters");
         return false;
@@ -46,6 +47,7 @@ function validateForm(event) {
       localStorage.setItem('password' ,password)
 
       localStorage.setItem("isRegistered", "true");
+      window.location.href = "index.html";
 
       return true;
 

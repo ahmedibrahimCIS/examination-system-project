@@ -269,4 +269,6 @@ submitBtn.addEventListener("click", function(){
   cardTitle.textContent = "You Finished!";
   message.textContent = `You answered ${correctAnswersCount} out of ${shuffledQuestions.length} questions correctly.`;
   }
+
+
 });
