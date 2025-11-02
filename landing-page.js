@@ -123,7 +123,25 @@ var shuffledQuestions = [];
 initLandingPage();
 
 function initLandingPage() {
-  shuffledQuestions = shuffleArray(questions);
+ if(localStorage.getItem("user`sQuestions")){
+    shuffledQuestions = JSON.parse(localStorage.getItem("user`sQuestions"));
+ }else{
+   shuffledQuestions = shuffleArray(questions);
+   localStorage.setItem("user`sQuestions", JSON.stringify(shuffledQuestions));
+ }
+
+  if(localStorage.getItem("markedQuestions")){
+    var markedQuestionsArray = JSON.parse(localStorage.getItem("markedQuestions"));
+    markedQuestionsSet = new Set(markedQuestionsArray);
+    var markedQuestionslistItems = "";
+    markedQuestionsSet.forEach((item) => {
+      markedQuestionslistItems += `<li class="marked-question" onclick="toggleQuestion(${item})" >question ${
+        item + 1
+      }</li>`;
+    });
+    markedQuestions.innerHTML = markedQuestionslistItems;
+  }
+
   // console.log(shuffledQuestions);
   // console.log(shuffledQuestions[0]);
   // console.log(answers);
@@ -149,12 +167,13 @@ function startTimer() {
   }, 1000);
 }
 
-playAgainBtn.addEventListener("click", resetgame);
+playAgainBtn.addEventListener("click", resetGame);
 
-function resetgame() {
+function resetGame() {
   markedQuestions.innerHTML = "";
   markedQuestionsSet.clear();
   initLandingPage();
+  localStorage.removeItem("user`sQuestions");
 }
 
 function shuffleArray(array) {
@@ -211,6 +230,7 @@ function handleAnswerSelection(el, selectedIndex, qIndex) {
   console.log(selectedIndex);
 
   console.log(shuffledQuestions);
+  localStorage.setItem("user`sQuestions", JSON.stringify(shuffledQuestions));
 }
 function toggleQuestion(newIndex) {
   displayCurrentQuestion(shuffledQuestions[newIndex], newIndex);
@@ -240,6 +260,7 @@ function toggelMarkQuestion(qIndex) {
   markBtn.innerHTML = `<button id="mark" class="mark-button" onclick="toggelMarkQuestion(${qIndex})" >${
     markedQuestionsSet.has(qIndex) ? `Un Mark` : `Mark`
   }</button>`;
+  localStorage.setItem("markedQuestions", JSON.stringify([...markedQuestionsSet]));
 }
 
 submitBtn.addEventListener("click", function(){
