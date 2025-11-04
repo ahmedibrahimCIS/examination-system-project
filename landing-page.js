@@ -118,6 +118,8 @@ var questions = [
   },
 ];
 
+var timeLeft;
+
 var shuffledQuestions = [];
 
 initLandingPage();
@@ -152,7 +154,12 @@ function initLandingPage() {
 }
 
 function startTimer() {
-  var timeLeft = 240;
+  if(localStorage.getItem("timeLeft")){
+    timeLeft = localStorage.getItem("timeLeft");
+  }else{
+    timeLeft = 240;
+  }
+  timer.textContent = timeLeft + "s";
    timerInterval = setInterval(function () {
     if (timeLeft <= 0) {
       messageBox.classList.remove("hidden");
@@ -172,8 +179,10 @@ playAgainBtn.addEventListener("click", resetGame);
 function resetGame() {
   markedQuestions.innerHTML = "";
   markedQuestionsSet.clear();
-  initLandingPage();
   localStorage.removeItem("user`sQuestions");
+  localStorage.removeItem("markedQuestions");
+  localStorage.removeItem("timeLeft");
+  initLandingPage();
 }
 
 function shuffleArray(array) {
@@ -292,4 +301,10 @@ submitBtn.addEventListener("click", function(){
   }
 
 
+});
+
+window.addEventListener("beforeunload", function () {
+  localStorage.setItem("timeLeft", timeLeft);
+
+  clearInterval(timerInterval);
 });

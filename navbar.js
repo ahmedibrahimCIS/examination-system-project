@@ -4,6 +4,9 @@ link.href = 'navbar.css';
 document.head.appendChild(link);
 var name
 var isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+if(!isLoggedIn){
+localStorage.removeItem('timeLeft');
+}
 if(localStorage.getItem('firstname') && isLoggedIn)
 {name=localStorage.getItem('firstname')}
 var navbar = document.createElement('nav');
@@ -53,6 +56,7 @@ logoutButton.addEventListener('click', function() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user`sQuestions');
     localStorage.removeItem('markedQuestions');
+    localStorage.removeItem('timeLeft');
     window.location.href = 'index.html';
 });
 
