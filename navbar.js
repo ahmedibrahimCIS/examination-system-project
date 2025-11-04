@@ -59,6 +59,26 @@ logoutButton.addEventListener('click', function() {
     localStorage.removeItem('timeLeft');
     window.location.href = 'index.html';
 });
+var darkModeToggle = document.getElementById('dark-mode-toggle');
+
+if (localStorage.getItem('darkMode') === "dark") {
+    document.body.classList.add('dark');
+    darkModeToggle.textContent ='☀️' ;
+} else {
+        darkModeToggle.textContent ='🌙' ;
+    }
+
+darkModeToggle.addEventListener('click', function() {
+    if (document.body.classList.contains('dark')) {
+        localStorage.removeItem('darkMode');
+        darkModeToggle.textContent ='🌙' ;
+    } else {
+        localStorage.setItem('darkMode', "dark");
+        darkModeToggle.textContent ='☀️' ;
+    }
+    document.body.classList.toggle('dark');
+    
+});
 
 
 

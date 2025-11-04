@@ -56,5 +56,26 @@ button:hover {
   background-color: #a78b5e;
   transform: translateY(-2px);
 }
+a:link, a:visited {
+  color: #bda069;
 
+}
 
+/* dark mode */
+.dark .container {
+  background-color: #1e1e1e; 
+  border-top: 6px solid #bda069; 
+  box-shadow: 0 6px 20px rgba(130, 130, 130, 0.1);
+}
+
+.dark .container h1 {
+  color: #e0e0e0;
+}
+.dark input {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  border: 2px solid #444;
+}
+/* input::placeholder {
+  color: #d61e1e;
+} */

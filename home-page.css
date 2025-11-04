@@ -41,5 +41,11 @@ body {
   transform: translateY(-2px);
 }
 
+/* dark mode */
+
+.dark .container h1 {
+  color: #e0e0e0;
+}
+
 
 
