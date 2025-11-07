@@ -1,4 +1,9 @@
 //translate the home page content
+var isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+if(!isLoggedIn){
+window.location.href = 'index.html';
+}
+
 var translations = {
       en: {
         title: "Welcome to the Quiz 🎯",

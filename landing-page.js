@@ -13,6 +13,7 @@ var submitBtn = document.getElementById("submit");
 var markedQuestionsSet = new Set();
 var timerInterval;
 var currentIndex = 0;
+var isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 var currentLang = localStorage.getItem("currLang") || "en";
 var isAr = currentLang === "ar";
 var timeLeft;
@@ -27,6 +28,10 @@ var translations = {
     playAgin: "العب مرة أخرى",
   },
 };
+
+if(!isLoggedIn){
+window.location.href = 'index.html';
+}
 
 
 
