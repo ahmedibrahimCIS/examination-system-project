@@ -26,7 +26,6 @@ var translations = {
 var currentLang = localStorage.getItem('currLang') || 'en';
 function translatePage(lang){
    var language = translations[lang] || translations.en;
-   
     document.getElementById('title').textContent = language.title;
     document.getElementById('label-fname').textContent = language.firstname;
     document.getElementById('label-lname').textContent = language.lastname;
@@ -38,6 +37,12 @@ function translatePage(lang){
     document.getElementById('login-link').textContent = language.link;
 
     localStorage.setItem('currLang', lang);
+
+        if(lang === 'en'){
+    document.dir = "ltr";
+    }else{
+      document.dir = "rtl";
+    }
 
 
 }

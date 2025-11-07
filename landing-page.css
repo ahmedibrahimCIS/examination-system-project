@@ -115,9 +115,11 @@ body {
 .mark-list {
   flex: 1;
   background-color: #ffffff;
-  border-left: 4px solid #bda069;
-  border-radius: 25px 0 0 25px;
+  border-inline-start: 4px solid #bda069;
+  border-start-start-radius:25px ;
+  border-end-start-radius:25px ;
   margin: 30px 30px 30px 0;
+  margin-inline-end: 0;
   padding: 20px;
   box-shadow: -4px 6px 20px rgba(0, 0, 0, 0.05);
   overflow-y: auto;
@@ -176,6 +178,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 20000;
 }
 
 .hidden {

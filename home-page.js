@@ -15,6 +15,12 @@ var currentLang = localStorage.getItem('currLang') || 'en';
 
 function translatePage(lang){
    var language = translations[lang] || translations.en;
+
+       if(lang === 'en'){
+    document.dir = "ltr";
+    }else{
+      document.dir = "rtl";
+    }
    
     document.getElementById('title').textContent = language.title;
     document.getElementById('desc').textContent = language.desc;

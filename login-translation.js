@@ -20,7 +20,6 @@ var translations = {
 var currentLang = localStorage.getItem('currLang') || 'en';
 function translatePage(lang){
    var language = translations[lang] || translations.en;
-   
     document.getElementById('title').textContent = language.title;
     document.getElementById('emaill').textContent = language.email;
     document.getElementById('passwordd').textContent = language.password;
@@ -30,9 +29,17 @@ function translatePage(lang){
 
     localStorage.setItem('currLang', lang);
 
+    
+       if(lang === 'en'){
+    document.dir = "ltr";
+    }else{
+      document.dir = "rtl";
+    }
+   
 
 }
 window.addEventListener('storage', (e) => {
+  debugger
   if (e.key === 'currLang' && e.newValue) {
     translatePage(e.newValue);
   }

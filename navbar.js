@@ -4,6 +4,8 @@ link.href = 'navbar.css';
 document.head.appendChild(link);
 var name
 var isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+var currentLang = localStorage.getItem('currLang') || 'en';
+isAr = localStorage.getItem('currLang') === 'ar';
 if(!isLoggedIn){
 localStorage.removeItem('timeLeft');
 }
@@ -12,13 +14,13 @@ if(localStorage.getItem('firstname') && isLoggedIn)
 var navbar = document.createElement('nav');
 navbar.className = 'nav';
 navbar.innerHTML = `
-        <div class="title">${name?`Hello, ${name}`:"Quizz App"}</div>
+        <div id="nav-title" class="title">${name?`${isAr?"مرحبا,":"Hello,"} ${name}`:(isAr?"كويز اب":"Quizz App")}</div>
         <div class="utilites">
             <button id="dark-mode-toggle" class="dark-mode-toggle">🌙</button>
-             <button id="translateBtn" class="translateBtn">🌍</button>
-            <button id="signin-button" class="navbar-button" onclick="window.location.href='index.html'">Sign in</button>
-            <button id="regester-button" class="navbar-button" onclick="window.location.href='register.html'">sign up</button>
-            <button id="logout-button" class="navbar-button">Log out</button>
+            <button id="translateBtn" class="translateBtn">🌍</button>
+            <button id="signin-button" class="navbar-button" onclick="window.location.href='index.html'">${isAr?"تسجيل الدخول":"Sign in"}</button>
+            <button id="regester-button" class="navbar-button" onclick="window.location.href='register.html'">${isAr?"التسجيل":"Sign up"}</button>
+            <button id="logout-button" class="navbar-button">${isAr?"تسجيل الخروج":"Log out"}</button>
         </div>`;
 
 document.body.appendChild(navbar);
@@ -40,17 +42,18 @@ if (isLoggedIn) {
     logoutButton.style.display = 'none';
 }
 
-if (loc=='/landing-page.html') {
+if (loc.includes('landing-page.html')) {
     signinButton.style.display = 'none';
     registerButton.style.display = 'none';
 }
 
-if (loc=='/' || loc=='/index.html') {
+if (loc.includes('/') || loc.includes('/index.html')) {
     signinButton.style.display = 'none';
 }
 
-if (loc=='/register.html') {
+if (loc.includes('/register.html')) {
     registerButton.style.display = 'none';
+    signinButton.style.display = 'block';
 }
 
 logoutButton.addEventListener('click', function() {
@@ -88,12 +91,58 @@ translateBtn.addEventListener('click', function() {
     if(localStorage.getItem('currLang') === 'en'){
         localStorage.setItem('currLang', 'ar');
         translatePage('ar');
+        translatePageNav('ar');
         document.dir = "rtl";
     }else{
         localStorage.setItem('currLang', 'en');
         translatePage('en');
+        translatePageNav('en');
         document.dir = "ltr";
     }
 }
 );
+var navTranslations = {
+      en: {
+        navtitle: "Quizz App",
+        signinbutton: "Sign in",
+        regesterbutton: "Sign up",
+        logoutbutton: "Log out"
+      },
+      ar: {
+        navtitle: "كويز اب",
+        signinbutton: "تسجيل الدخول",
+        regesterbutton: "التسجيل",
+        logoutbutton: "تسجيل الخروج"
+      }
+};
+
+function translatePageNav(lang){
+   var language = navTranslations[lang] || navTranslations.en;
+
+       if(lang === 'en'){
+    document.dir = "ltr";
+    isAr = false;
+    }else{
+      document.dir = "rtl";
+        isAr = true;
+    }
+    document.querySelector('.title').innerHTML = `${name?`${isAr?"مرحبا,":"Hello,"} ${name}`:(isAr?"كويز اب":"Quizz App")}`
+    document.getElementById('signin-button').textContent = language.signinbutton;
+    document.getElementById('regester-button').textContent = language.regesterbutton;
+    document.getElementById('logout-button').textContent = language.logoutbutton;
+
+    localStorage.setItem('currLang', lang);
+
+}
+
+
+window.addEventListener('storage', (e) => {
+    debugger
+  if (e.key === 'currLang' && e.newValue) {
+    isAr = e.newValue === 'ar';
+    translatePageNav(e.newValue);
+  }
+});
+
+translatePageNav(currentLang);
 
