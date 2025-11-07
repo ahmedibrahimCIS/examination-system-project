@@ -15,6 +15,7 @@ navbar.innerHTML = `
         <div class="title">${name?`Hello, ${name}`:"Quizz App"}</div>
         <div class="utilites">
             <button id="dark-mode-toggle" class="dark-mode-toggle">🌙</button>
+             <button id="translateBtn" class="translateBtn">🌍</button>
             <button id="signin-button" class="navbar-button" onclick="window.location.href='index.html'">Sign in</button>
             <button id="regester-button" class="navbar-button" onclick="window.location.href='register.html'">sign up</button>
             <button id="logout-button" class="navbar-button">Log out</button>
@@ -80,7 +81,17 @@ darkModeToggle.addEventListener('click', function() {
     
 });
 
+//translation
+var translateBtn = document.getElementById('translateBtn');
 
-
-
+translateBtn.addEventListener('click', function() {
+    if(localStorage.getItem('currLang') === 'en'){
+        localStorage.setItem('currLang', 'ar');
+        translatePage('ar');
+    }else{
+        localStorage.setItem('currLang', 'en');
+        translatePage('en');
+    }
+}
+);
 
