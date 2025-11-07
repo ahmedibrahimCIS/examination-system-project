@@ -8,20 +8,20 @@
 </head>
 <body>
  <div class="container">
-        <h1>Create a new account </h1>
+        <h1 id="title">Create a new account </h1>
    
     <div class="regForm"> 
         <form id="regForm" method="GET" onsubmit="return validateForm(event)" >
 
-        <label>First name <input type="text" id="fname" name="firstname" placeholder="Enter your firstname"></label>
-        <label>Last name <input type="text" id="lname" name="lastname" placeholder="Enter your  lastname"> </label>
-        <label>email <input type="email" id="email" name="email" placeholder="Enter your email" ></label>
-        <label>Password <input type="password" id="password" name="password" placeholder="Enter your password"></label>
-        <label>Re-enter password <input type="password" id="confirm" name="password" placeholder="Confirm your password"></label>
+        <label><span id="label-fname">First name</span> <input type="text" id="fname" name="firstname" placeholder="Enter your firstname"></label>
+        <label ><span id="label-lname">Last name</span> <input type="text" id="lname" name="lastname" placeholder="Enter your  lastname"></label>
+        <label ><span id="label-email">Email</span> <input type="email" id="email" name="email" placeholder="Enter your email"></label>
+        <label ><span id="label-password">password</span> <input type="password" id="password" name="password" placeholder="Enter your password"></label>
+        <label ><span id="label-confirm">Confirm-Password</span> <input type="password" id="confirm" name="password" placeholder="Confirm your password"></label>
 
-        <span>Already have an account? </span><a href="index.html">Log in</a>
+        <span id="already-account">Already have an account? </span><a id="login-link" href="index.html">Log in</a>
 
-        <button type="submit">Create Account</button>
+        <button type="submit" id="regButton">Create Account</button>
 
 
     </form>
@@ -30,6 +30,7 @@
 
     
     <script src="valForm.js"></script>
+    <script src="register-translation.js"></script>
         <script src="navbar.js"></script>
 </body>
 </html>

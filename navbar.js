@@ -88,9 +88,11 @@ translateBtn.addEventListener('click', function() {
     if(localStorage.getItem('currLang') === 'en'){
         localStorage.setItem('currLang', 'ar');
         translatePage('ar');
+        document.dir = "rtl";
     }else{
         localStorage.setItem('currLang', 'en');
         translatePage('en');
+        document.dir = "ltr";
     }
 }
 );
